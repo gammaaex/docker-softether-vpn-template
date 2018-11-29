@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  softether:
+    image: siomiz/softethervpn
+    ports:
+      - "500:500/udp" # for L2TP/IPSec
+      - "4500:4500/udp" # for L2TP/IPSec
+      - "1701:1701/tcp" # for L2TP/IPSec
+        # - "1194:1194/udp" # for OpenVPN.
+        # - "443:443/tcp" # for OpenVPN over HTTPS.
+        # - "1194:1194/udp" # for SoftEther VPN (recommended by vendor).
+        # - "5555:5555/tcp" # is also available as alternative.
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PSK=sharedpassword
+      - USERNAME=username1
+      - PASSWORD=password1
